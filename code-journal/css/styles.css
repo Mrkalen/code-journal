@@ -22,6 +22,7 @@ label {
 }
 
 .avatar-container {
+  align-self: center;
   width: 15rem;
   height: 15rem;
   border: 1px solid black;
@@ -30,4 +31,19 @@ label {
 textarea {
   width: 100%;
   height: 5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .avatar-container {
+    align-self: center;
+  }
+
+  .col-half {
+    width: 100%;
+  }
 }
