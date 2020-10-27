@@ -25,7 +25,8 @@ label {
   align-self: center;
   width: 15rem;
   height: 15rem;
-  border: 1px solid black;
+  padding-top: 1rem;
+  padding-right: 1rem;
 }
 
 textarea {

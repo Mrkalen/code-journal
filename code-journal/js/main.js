@@ -7,7 +7,13 @@ console.log('img queried', $avatar);
 var url = $userInput.textContent;
 console.log('text input', url);
 
-$userInput.addEventListener('blur', function (event) {
- var url =  $userInput.textContent;
+$userInput.addEventListener('input', function (event) {
+ var url =  event.target.value;
+ console.log(url);
   $avatar.setAttribute('src', url);
+});
+
+
+$userInput.addEventListener('input', function handleInput(event) {
+  console.log('value of ' + event.target.name + ': ' + event.target.value);
 });
