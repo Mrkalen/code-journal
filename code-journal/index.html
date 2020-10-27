@@ -20,35 +20,62 @@
     <div>Code Journal</div>
   </header>
   <main class="container">
-    <div class="form-container">
-      <h1>Edit Profile</h1>
-      <form id="profile-form">
-        <fieldset>
-          <div class="row">
-            <div class="col-half">
-              <img class="avatar-container" src="images/placeholder-image-square.jpg">
+    <div class="edit-profile hidden" data-view="edit-profile">
+      <div class="form-container">
+        <h1>Edit Profile</h1>
+        <form id="profile-form">
+          <fieldset>
+            <div class="row">
+              <div class="col-half">
+                <img class="avatar-container" src="images/placeholder-image-square.jpg">
+              </div>
+              <div class="col-half">
+                <label name="avatar">Avatar URL</label>
+                <input required id="avatar" type="url" class="profileInfo" name="avatarUrl"
+                  placeholder="Paste URL here">
+                <label for="user-name">User Name</label>
+                <input required id="user-name" type="text" class="profileInfo" name="username"
+                  placeholder="Navin R. Johnson">
+                <label for="full-name">Full Name</label>
+                <input required id="full-name" type="text" class="profileInfo" name="fullName"
+                  placeholder="Steve Martin">
+                <label for="location">Location</label>
+                <input required id="location" type="text" class="profileInfo" name="location" placeholder="Mississippi">
+              </div>
             </div>
-            <div class="col-half">
-              <label name="avatar">Avatar URL</label>
-              <input required id="avatar" type="url" class="profileInfo" name="avatarUrl" placeholder="Paste URL here">
-              <label for="user-name">User Name</label>
-              <input required id="user-name" type="text" class="profileInfo" name="username" placeholder="Navin R. Johnson">
-              <label for="full-name">Full Name</label>
-              <input required id="full-name" type="text" class="profileInfo" name="fullName" placeholder="Steve Martin">
-              <label for="location">Location</label>
-              <input required id="location" type="text" class="profileInfo" name="location" placeholder="Mississippi">
+            <div class="row">
+              <label for="bio">Bio</label>
+              <textarea required id="bio" type="text" class="profileInfo" name="bio"
+                placeholder="I was born a poor black child..."></textarea>
             </div>
-          </div>
-          <div class="row">
-            <label for="bio">Bio</label>
-            <textarea required id="bio" type="text" class="profileInfo" name="bio"
-              placeholder="I was born a poor black child..."></textarea>
-          </div>
-          <button class="submit" type="submit">Submit</button>
-        </fieldset>
-      </form>
+            <button class="submit" type="submit">Submit</button>
+          </fieldset>
+        </form>
+      </div>
     </div>
-    <div data-view="edit-profile"></div>
+    <div class="profile-container" data-view="profile">
+      <h1 id="user-fullName">Full Name</h1>
+      <div class="row">
+        <div class="col-half">
+          <img class="avatar-container" src="images/placeholder-image-square.jpg">
+        </div>
+        <div class="col-half">
+          <div class="user-info">
+            <img class="icon" src="images/user icon.png">
+            <p id="user-username">User Name</p>
+          </div>
+          <div class="user-info">
+            <img class="icon" src="images/location icon.png">
+            <p id="user-location">User Location</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="bio-container">
+          <p id="user-bio">I would like a banana.</p>
+        </div>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

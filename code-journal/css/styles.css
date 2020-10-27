@@ -1,5 +1,6 @@
 body {
   font-family: 'Reenie Beanie', Arial, Helvetica, sans-serif;
+  margin: 0;
 }
 
 header {
@@ -42,7 +43,7 @@ textarea {
 }
 
 @media only screen and (max-width: 600px) {
-  .row {
+ .row {
     display: flex;
     flex-direction: column;
   }
@@ -51,8 +52,50 @@ textarea {
     align-self: center;
   }
 
-  .col-half {
+ .col-half {
     width: 100%;
   }
 
+  .profile-container .col-half {
+    flex-direction: row;
+  }
+
+  .user-info {
+    justify-content: center;
+  }
+
+}
+
+.hidden {
+  display: none;
+}
+
+.profile-container {
+  border: solid;
+  padding: 1rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-container .col-half {
+  justify-content: space-around;
+}
+
+.bio-container {
+  min-height: 3rem;
+  border: solid;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.bio-container p {
+  margin: .25rem;
+}
+
+img.icon {
+  width: 10%;
+  margin: 1rem;
 }

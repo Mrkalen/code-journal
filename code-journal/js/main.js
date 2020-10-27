@@ -1,3 +1,5 @@
+// edit-profile
+
 var $userInput = document.querySelector('#avatar')
 
 var $avatar = document.querySelector('img');
@@ -30,3 +32,13 @@ window.addEventListener('beforeunload', function (event) {
   var profileData = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', profileData);
 })
+
+// profile-view
+
+// var $userAvatar = document.querySelector('.avatar-container');
+// var $userFullName = document.querySelector('#user-fullName');
+// var $userLocation = document.querySelector('#user-location');
+// var $userBio = document.querySelector('#user-bio');
+
+// $userAvatar.setAttribute('src', data.profile.avatarUrl.value);
+// $userFullName.textContent = data.profile.fullName.value;
