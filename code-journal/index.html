@@ -22,7 +22,7 @@
   <main class="container">
     <div class="form-container">
       <h1>Edit Profile</h1>
-      <form>
+      <form id="profile-form">
         <fieldset>
           <div class="row">
             <div class="col-half">
@@ -32,10 +32,9 @@
               <label name="avatar">Avatar URL</label>
               <input required id="avatar" type="url" class="profileInfo" name="avatarUrl" placeholder="Paste URL here">
               <label for="user-name">User Name</label>
-              <input required id="user-name" type="text" class="profileInfo" name="username"
-                placeholder="Navin R. Johnson">
+              <input required id="user-name" type="text" class="profileInfo" name="username" placeholder="Navin R. Johnson">
               <label for="full-name">Full Name</label>
-              <input required id="full-name" type="text" class="profileInfo" name="fullNname" placeholder="Steve Martin">
+              <input required id="full-name" type="text" class="profileInfo" name="fullName" placeholder="Steve Martin">
               <label for="location">Location</label>
               <input required id="location" type="text" class="profileInfo" name="location" placeholder="Mississippi">
             </div>
@@ -45,7 +44,7 @@
             <textarea required id="bio" type="text" class="profileInfo" name="bio"
               placeholder="I was born a poor black child..."></textarea>
           </div>
-          <button type="submit">Submit</button>
+          <button class="submit" type="submit">Submit</button>
         </fieldset>
       </form>
     </div>
