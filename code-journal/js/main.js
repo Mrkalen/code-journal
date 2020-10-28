@@ -35,10 +35,29 @@ window.addEventListener('beforeunload', function (event) {
 
 // profile-view
 
-// var $userAvatar = document.querySelector('.avatar-container');
-// var $userFullName = document.querySelector('#user-fullName');
-// var $userLocation = document.querySelector('#user-location');
-// var $userBio = document.querySelector('#user-bio');
+document.addEventListener('DOMContentLoaded', function(event) {
+  var dataFromLocal = localStorage.getItem('javascript-local-storage')
+  data = JSON.parse(dataFromLocal);
+})
 
-// $userAvatar.setAttribute('src', data.profile.avatarUrl.value);
-// $userFullName.textContent = data.profile.fullName.value;
+var $userAvatar = document.querySelector('.avatar-container');
+console.log('value of useravatar', $userAvatar);
+
+$userAvatar.setAttribute('src', data.profile.avatarUrl);
+
+var $userFullName = document.querySelector('#user-fullName');
+
+
+var $userLocation = document.querySelector('#user-location');
+
+
+var $userUsername = document.querySelector('#user-username');
+
+
+var $userBio = document.querySelector('#user-bio');
+
+
+$userFullName.textContent = data.profile.fullName;
+$userLocation.textContent = data.profile.location;
+$userBio.textContent= data.profile.bio;
+$userUsername.textContent = data.profile.username;
