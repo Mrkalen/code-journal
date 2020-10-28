@@ -121,6 +121,12 @@ function viewSwapping(dataView) {
   } else {
     $profileView.setAttribute('class', 'profile hidden');
     $editView.setAttribute('class', 'edit-profile');
+    $profile.elements.avatarUrl.value = data.profile.avatarUrl;
+    $profile.elements.username.value = data.profile.username;
+    $profile.elements.fullName.value = data.profile.fullName;
+    $profile.elements.location.value = data.profile.location;
+    $profile.elements.bio.value = data.profile.bio;
+    $avatar.setAttribute('src', data.profile.avatarUrl);
   }
   data.view = dataView;
 
@@ -136,9 +142,6 @@ function viewSwapping(dataView) {
 
 
 document.addEventListener('DOMContentLoaded', function (event) {
-  // var dataFromLocal = localStorage.getItem('javascript-local-storage')
-  // data = JSON.parse(dataFromLocal);
-
   if (data.profile.username === undefined) {
     viewSwapping('edit-profile');
   } else {
