@@ -40,24 +40,66 @@ document.addEventListener('DOMContentLoaded', function(event) {
   data = JSON.parse(dataFromLocal);
 })
 
-var $userAvatar = document.querySelector('.avatar-container');
-console.log('value of useravatar', $userAvatar);
+var $profileContainer = document.querySelector('.profile-container');
 
-$userAvatar.setAttribute('src', data.profile.avatarUrl);
+function renderProfile(data) {
+  var newh1 = document.createElement('h1')
+  newh1.setAttribute('id', 'user-fullName');
+  newh1.textContent = data.profile.fullName;
 
-var $userFullName = document.querySelector('#user-fullName');
+  var newRow = document.createElement('div')
+  newRow.setAttribute('class', 'row');
+  newh1.appendChild(newRow);
 
+  var newCol = document.createElement('div');
+  newCol.setAttribute('class', 'col-half');
+  newRow.appendChild(newCol);
 
-var $userLocation = document.querySelector('#user-location');
+  var newImg = document.createElement('img');
+  newImg.setAttribute('class', 'avatar-container');
+  newImg.setAttribute('src', data.profile.avatarUrl);
+  newCol.appendChild(newImg);
 
+  var newCol2 = document.createElement('div');
+  newCol2.setAttribute('class', 'col-half');
+  newRow.appendChild(newCol2);
 
-var $userUsername = document.querySelector('#user-username');
+  var newInfo = document.createElement('div');
+  newInfo.setAttribute('class', 'user-info');
+  newRow.appendChild(newInfo);
 
+  var newIcon1 = document.createElement('img');
+  newIcon1.setAttribute('class', 'icon');
+  newIcon1.setAttribute('src', 'images/user icon.png');
+  newInfo.appendChild(newIcon1);
 
-var $userBio = document.querySelector('#user-bio');
+  var newPusername = document.createElement('p');
+  newPusername.setAttribute('id', 'user-username');
+  newPusername.textContent = data.profile.username
+  newInfo.appendChild(newPusername);
 
+  newCol.appendChild(newInfo);
 
-$userFullName.textContent = data.profile.fullName;
-$userLocation.textContent = data.profile.location;
-$userBio.textContent= data.profile.bio;
-$userUsername.textContent = data.profile.username;
+  var newIcon2 = document.createElement('img');
+  newIcon2.setAttribute('class', 'icon');
+  newIcon2.setAttribute('src', 'images/location icon.png');
+  newInfo.appendChild(newIcon2);
+
+  var newPLocation = document.createElement('p');
+  newPLocation.setAttribute('id', 'user-location');
+  newPLocation.textContent = data.profile.location;
+  newInfo.appendChild(newPLocation);
+
+  newh1.appendChild(newRow);
+
+  var newBio = document.createElement('div');
+  newBio.setAttribute('class', 'bio-container');
+  newRow.appendChild(newBio);
+
+  var newPBio = document.createElement('p');
+  newPBio.setAttribute('id', 'user-bio');
+  newPBio.textContent = data.profile.bio;
+  newBio.appendChild(newPBio);
+
+  return newh1;
+}
