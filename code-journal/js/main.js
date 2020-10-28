@@ -119,7 +119,7 @@ function viewSwapping(dataView) {
     $editView.setAttribute('class', 'edit-profile hidden');
     $profileView.setAttribute('class', 'profile');
   } else {
-    $profileView.setAttribute('class', 'profil hidden');
+    $profileView.setAttribute('class', 'profile hidden');
     $editView.setAttribute('class', 'edit-profile');
   }
   data.view = dataView;
