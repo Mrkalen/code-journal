@@ -18,6 +18,7 @@ $profile.addEventListener('submit', function (event) {
   data.profile.fullName = $profile.elements.fullName.value;
   data.profile.location = $profile.elements.location.value;
   data.profile.bio = $profile.elements.bio.value;
+  data.view = 'profile';
 
   $profile.reset();
   $avatar.setAttribute('src', "images/placeholder-image-square.jpg");
@@ -35,18 +36,19 @@ window.addEventListener('beforeunload', function (event) {
 
 // profile-view DOM creation
 
-
-
-var $profileContainer = document.querySelector('.profile-container');
-
 function renderProfile(data) {
-  var newh1 = document.createElement('h1')
+
+  var newDiv = document.createElement('div');
+  newDiv.setAttribute('class', 'profile-container');
+
+  var newh1 = document.createElement('h1');
   newh1.setAttribute('id', 'user-fullName');
   newh1.textContent = data.profile.fullName;
+  newDiv.appendChild(newh1);
 
-  var newRow = document.createElement('div')
+  var newRow = document.createElement('div');
   newRow.setAttribute('class', 'row');
-  newh1.appendChild(newRow);
+  newDiv.appendChild(newRow);
 
   var newCol = document.createElement('div');
   newCol.setAttribute('class', 'col-half');
@@ -63,7 +65,7 @@ function renderProfile(data) {
 
   var newInfo = document.createElement('div');
   newInfo.setAttribute('class', 'user-info');
-  newRow.appendChild(newInfo);
+  newCol2.appendChild(newInfo);
 
   var newIcon1 = document.createElement('img');
   newIcon1.setAttribute('class', 'icon');
@@ -72,49 +74,62 @@ function renderProfile(data) {
 
   var newPusername = document.createElement('p');
   newPusername.setAttribute('id', 'user-username');
-  newPusername.textContent = data.profile.username
+  newPusername.textContent = data.profile.username;
   newInfo.appendChild(newPusername);
 
-  newCol.appendChild(newInfo);
+  var newInfo2 = document.createElement('div');
+  newInfo2.setAttribute('class', 'user-info');
+  newCol2.appendChild(newInfo2);
 
   var newIcon2 = document.createElement('img');
   newIcon2.setAttribute('class', 'icon');
   newIcon2.setAttribute('src', 'images/location icon.png');
-  newInfo.appendChild(newIcon2);
+  newInfo2.appendChild(newIcon2);
 
   var newPLocation = document.createElement('p');
   newPLocation.setAttribute('id', 'user-location');
   newPLocation.textContent = data.profile.location;
-  newInfo.appendChild(newPLocation);
+  newInfo2.appendChild(newPLocation);
 
-  newh1.appendChild(newRow);
+  var newRow2 = document.createElement('div');
+  newRow2.setAttribute('class', 'row');
+  newDiv.appendChild(newRow2);
 
   var newBio = document.createElement('div');
   newBio.setAttribute('class', 'bio-container');
-  newRow.appendChild(newBio);
+  newRow2.appendChild(newBio);
 
   var newPBio = document.createElement('p');
   newPBio.setAttribute('id', 'user-bio');
   newPBio.textContent = data.profile.bio;
   newBio.appendChild(newPBio);
 
-  return newh1;
+  return newDiv;
 }
 
 
-// data-view function
+// viewSwapping function
 
 var $editView = document.querySelector('.edit-profile');
 
-var $profileView = document.querySelector('.profile-container');
+var $profileView = document.querySelector('.profile');
 
 function viewSwapping(dataView) {
   if (dataView !== 'edit-profile') {
     $editView.setAttribute('class', 'edit-profile hidden');
+    $profileView.setAttribute('class', 'profile');
   } else {
-    $profileView.setAttribute('class', 'profile-container hidden');
+    $profileView.setAttribute('class', 'profil hidden');
+    $editView.setAttribute('class', 'edit-profile');
   }
+  data.view = dataView;
 
+  if (dataView === 'profile') {
+    while ($profileView.firstChild) {
+      $profileView.removeChild($profileView.firstChild);
+    }
+    $profileView.appendChild(renderProfile(data));
+  }
 }
 
 // listen for DOMContentLoaded
