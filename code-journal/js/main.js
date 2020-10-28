@@ -33,12 +33,9 @@ window.addEventListener('beforeunload', function (event) {
   localStorage.setItem('javascript-local-storage', profileData);
 })
 
-// profile-view
+// profile-view DOM creation
 
-document.addEventListener('DOMContentLoaded', function(event) {
-  var dataFromLocal = localStorage.getItem('javascript-local-storage')
-  data = JSON.parse(dataFromLocal);
-})
+
 
 var $profileContainer = document.querySelector('.profile-container');
 
@@ -103,3 +100,25 @@ function renderProfile(data) {
 
   return newh1;
 }
+
+
+// data-view function
+
+var $editView = document.querySelector('.edit-profile');
+
+var $profileView = document.querySelector('.profile-container');
+
+function viewSwapping(dataView) {
+  if (dataView !== 'edit-profile') {
+    $editView.setAttribute('class', 'edit-profile hidden');
+  } else {
+    $profileView.setAttribute('class', 'profile-container hidden');
+  }
+
+}
+
+// listen for DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function (event) {
+  var dataFromLocal = localStorage.getItem('javascript-local-storage')
+  data = JSON.parse(dataFromLocal);
+})
