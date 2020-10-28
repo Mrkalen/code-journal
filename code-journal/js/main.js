@@ -24,15 +24,17 @@ $profile.addEventListener('submit', function (event) {
   $avatar.setAttribute('src', "images/placeholder-image-square.jpg");
 });
 
+window.addEventListener('beforeunload', function (event) {
+  var profileData = JSON.stringify(data);
+  localStorage.setItem('javascript-local-storage', profileData);
+})
+
 var savedProfile = localStorage.getItem('javascript-local-storage')
 if (savedProfile !== null) {
   data = JSON.parse(savedProfile);
 }
 
-window.addEventListener('beforeunload', function (event) {
-  var profileData = JSON.stringify(data);
-  localStorage.setItem('javascript-local-storage', profileData);
-})
+
 
 // profile-view DOM creation
 
@@ -67,9 +69,8 @@ function renderProfile(data) {
   newInfo.setAttribute('class', 'user-info');
   newCol2.appendChild(newInfo);
 
-  var newIcon1 = document.createElement('img');
-  newIcon1.setAttribute('class', 'icon');
-  newIcon1.setAttribute('src', 'images/user icon.png');
+  var newIcon1 = document.createElement('i');
+  newIcon1.setAttribute('class', 'fas fa-user icon');
   newInfo.appendChild(newIcon1);
 
   var newPusername = document.createElement('p');
@@ -81,9 +82,8 @@ function renderProfile(data) {
   newInfo2.setAttribute('class', 'user-info');
   newCol2.appendChild(newInfo2);
 
-  var newIcon2 = document.createElement('img');
-  newIcon2.setAttribute('class', 'icon');
-  newIcon2.setAttribute('src', 'images/location icon.png');
+  var newIcon2 = document.createElement('i');
+  newIcon2.setAttribute('class', 'fas fa-location-arrow icon');
   newInfo2.appendChild(newIcon2);
 
   var newPLocation = document.createElement('p');
@@ -133,7 +133,16 @@ function viewSwapping(dataView) {
 }
 
 // listen for DOMContentLoaded
+
+
 document.addEventListener('DOMContentLoaded', function (event) {
-  var dataFromLocal = localStorage.getItem('javascript-local-storage')
-  data = JSON.parse(dataFromLocal);
+  // var dataFromLocal = localStorage.getItem('javascript-local-storage')
+  // data = JSON.parse(dataFromLocal);
+
+  if (data.profile.username === undefined) {
+    viewSwapping('edit-profile');
+  } else {
+    viewSwapping('profile');
+  }
+
 })

@@ -42,6 +42,41 @@ textarea {
   height: 5rem;
 }
 
+.hidden {
+  display: none;
+}
+
+.profile {
+  border: solid;
+  padding: 1rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  font-size: 2.5rem;
+}
+
+.profile .col-half {
+  justify-content: space-around;
+}
+
+.bio-container {
+  border: .5px solid gray;
+  min-height: 3rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.bio-container p {
+  font-size: 1.5rem;
+  margin: .25rem;
+}
+
+.icon {
+  margin: 1rem;
+}
+
 @media only screen and (max-width: 600px) {
  .row {
     display: flex;
@@ -62,40 +97,11 @@ textarea {
 
   .user-info {
     justify-content: center;
+    font-size: 1.5rem;
   }
 
-}
+  .bio-container {
+    font-size: 1rem;
+  }
 
-.hidden {
-  display: none;
-}
-
-.profile {
-  border: solid;
-  padding: 1rem;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-}
-
-.profile .col-half {
-  justify-content: space-around;
-}
-
-.bio-container {
-  min-height: 3rem;
-  border: solid;
-  margin-top: 1rem;
-  width: 100%;
-}
-
-.bio-container p {
-  margin: .25rem;
-}
-
-img.icon {
-  width: 10%;
-  margin: 1rem;
 }
