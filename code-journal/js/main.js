@@ -119,12 +119,29 @@ var $editView = document.querySelector('.edit-profile');
 
 var $profileView = document.querySelector('.profile');
 
+var $entriesView = document.querySelector('.entries');
+
+var $entryView = document.querySelector('.create-entry');
+
 function viewSwapping(dataView) {
-  if (dataView !== 'edit-profile') {
+  debugger;
+  if (dataView === 'profile') {
     $editView.setAttribute('class', 'edit-profile hidden');
+    $entriesView.setAttribute('class', 'entries hidden');
+    $entryView.setAttribute('class', 'create-entry hidden');
     $profileView.setAttribute('class', 'profile');
-  } else {
+
+    if (dataView === 'profile') {
+      while ($profileView.firstChild) {
+        $profileView.removeChild($profileView.firstChild);
+      }
+      $profileView.appendChild(renderProfile(data));
+    }
+
+  } else if (dataView === 'edit-profile') {
     $profileView.setAttribute('class', 'profile hidden');
+    $entriesView.setAttribute('class', 'entries hidden');
+    $entryView.setAttribute('class', 'create-entry hidden');
     $editView.setAttribute('class', 'edit-profile');
     $profile.elements.avatarUrl.value = data.profile.avatarUrl;
     $profile.elements.username.value = data.profile.username;
@@ -132,15 +149,18 @@ function viewSwapping(dataView) {
     $profile.elements.location.value = data.profile.location;
     $profile.elements.bio.value = data.profile.bio;
     $avatar.setAttribute('src', data.profile.avatarUrl);
+  } else if (dataView === 'entries') {
+    $profileView.setAttribute('class', 'profile hidden');
+    $editView.setAttribute('class', 'edit-profile hidden');
+    $entryView.setAttribute('class', 'create-entry hidden');
+    $entriesView.setAttribute('class', 'entries');
+  } else if (dataView === 'create-entry') {
+    $profileView.setAttribute('class', 'profile hidden');
+    $editView.setAttribute('class', 'edit-profile hidden');
+    $entriesView.setAttribute('class', 'entries hidden');
+    $entryView.setAttribute('class', 'create-entry');
   }
-  data.view = dataView;
 
-  if (dataView === 'profile') {
-    while ($profileView.firstChild) {
-      $profileView.removeChild($profileView.firstChild);
-    }
-    $profileView.appendChild(renderProfile(data));
-  }
 }
 
 // listen for DOMContentLoaded
@@ -149,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   if (data.profile.username === '') {
     viewSwapping('edit-profile');
   } else {
-    viewSwapping('profile');
+    viewSwapping(data.view);
   }
 
 });
@@ -157,13 +177,15 @@ document.addEventListener('DOMContentLoaded', function (event) {
 // listen for link
 
 document.addEventListener('click', function (event) {
-  var $dataview = event.target.getAttribute('data-view');
+  data.view = event.target.getAttribute('data-view');
   if (event.target.tagName !== 'A') {
     return;
   }
   if (data.profile.username === '') {
     viewSwapping('edit-profile');
   } else {
-    viewSwapping($dataview);
+    viewSwapping(data.view);
   }
 });
+
+// entries

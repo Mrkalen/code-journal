@@ -38,6 +38,13 @@ a {
   color: black;
 }
 
+ul {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
 .col-half {
   display: flex;
   flex-direction: column;

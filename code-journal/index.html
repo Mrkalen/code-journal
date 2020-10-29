@@ -20,11 +20,11 @@
     <div>Code Journal</div>
     <ul class="links">
       <li>
-    <a href="#" data-view="profile">Profile</a>
-    </li>
-    <li>
-      <a href="" data-view="entries">Entries</a>
-    </li>
+        <a href="#" data-view="profile">Profile</a>
+      </li>
+      <li>
+        <a href="" data-view="entries">Entries</a>
+      </li>
     </ul>
   </header>
   <main class="container">
@@ -63,7 +63,28 @@
     </div>
     <div class="profile hidden" data-view="profile">
     </div>
-    <div class="entries" data-view="entries"></div>
+    <div class="entries" data-view="entries">
+    </div>
+    <div class="create-entry" data-view="create-entry">
+      <form>
+        <h1>New Entry</h1>
+        <div class="row">
+          <div class="col-half">
+            <img class="avatar-container" src="images/placeholder-image-square.jpg">
+          </div>
+          <div class="col-half">
+          <label for="photoUrl">Image URL</label>
+          <input required id="photoUrl" type="text" class="entry-input" name="imageUrl" placeholder="Enter URL">
+          <label for="entry-title">Title</label>
+          <input required id="entry-title" type="text" class="entery-input" name="title">
+          </div>
+        </div>
+        <div class="row">
+          <label for="entry-notes">Notes</label>
+          <textarea required id="entry-notes" type="text" class="entry-input" name="notes"></textarea>
+        </div>
+      </form>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
