@@ -124,7 +124,6 @@ var $entriesView = document.querySelector('.entries');
 var $entryView = document.querySelector('.create-entry');
 
 function viewSwapping(dataView) {
-  debugger;
   if (dataView === 'profile') {
     $editView.setAttribute('class', 'edit-profile hidden');
     $entriesView.setAttribute('class', 'entries hidden');
