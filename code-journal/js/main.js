@@ -188,6 +188,7 @@ document.addEventListener('click', function (event) {
 });
 
 // entries
+
 var $newEntryPhoto = document.querySelector('#photoUrl');
 
 var $photoPreview = document.querySelector('.entry-photo');
@@ -195,4 +196,21 @@ var $photoPreview = document.querySelector('.entry-photo');
 $newEntryPhoto.addEventListener('input', function (event) {
   var url = event.target.value;
   $photoPreview.setAttribute('src', url);
+});
+
+var $entryForm = document.querySelector('#entry-form');
+
+$entryForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  var entry = {};
+  entry.photoUrl = $entryForm.elements.photoUrl.value;
+  entry.title = $entryForm.elements.title.value;
+  entry.notes = $entryForm.elements.notes.value;
+  data.entries.unshift(entry);
+  data.view = 'entries';
+  viewSwapping(data.view);
+
+  $entryForm.reset();
+  $photoPreview.setAttribute('src', 'images/placeholder-image-square.jpg');
+
 });
