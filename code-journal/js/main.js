@@ -1,11 +1,11 @@
 // edit-profile
 
-var $userInput = document.querySelector('#avatar')
+var $userInput = document.querySelector('#avatar');
 
 var $avatar = document.querySelector('img');
 
 $userInput.addEventListener('input', function (event) {
- var url =  event.target.value;
+  var url = event.target.value;
   $avatar.setAttribute('src', url);
 });
 
@@ -19,22 +19,22 @@ $profile.addEventListener('submit', function (event) {
   data.profile.location = $profile.elements.location.value;
   data.profile.bio = $profile.elements.bio.value;
   data.view = 'profile';
+  viewSwapping(data.view);
 
   $profile.reset();
-  $avatar.setAttribute('src', "images/placeholder-image-square.jpg");
+  $avatar.setAttribute('src', 'images/placeholder-image-square.jpg');
+
 });
 
 window.addEventListener('beforeunload', function (event) {
   var profileData = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', profileData);
-})
+});
 
-var savedProfile = localStorage.getItem('javascript-local-storage')
+var savedProfile = localStorage.getItem('javascript-local-storage');
 if (savedProfile !== null) {
   data = JSON.parse(savedProfile);
 }
-
-
 
 // profile-view DOM creation
 
@@ -104,9 +104,14 @@ function renderProfile(data) {
   newPBio.textContent = data.profile.bio;
   newBio.appendChild(newPBio);
 
+  var link = document.createElement('a');
+  link.setAttribute('href', '#');
+  link.setAttribute('data-view', 'edit-profile');
+  link.textContent = 'Edit Profile';
+  newDiv.appendChild(link);
+
   return newDiv;
 }
-
 
 // viewSwapping function
 
@@ -140,7 +145,6 @@ function viewSwapping(dataView) {
 
 // listen for DOMContentLoaded
 
-
 document.addEventListener('DOMContentLoaded', function (event) {
   if (data.profile.username === undefined) {
     viewSwapping('edit-profile');
@@ -148,4 +152,17 @@ document.addEventListener('DOMContentLoaded', function (event) {
     viewSwapping('profile');
   }
 
-})
+});
+
+// listen for link
+
+document.addEventListener('click', function (event) {
+  if (event.target.tagName !== 'A') {
+    return;
+  }
+  if (data.profile.username === '') {
+    return;
+  }
+  var $dataview = event.target.getAttribute('data-view');
+  viewSwapping($dataview);
+});

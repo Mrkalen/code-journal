@@ -5,10 +5,18 @@ body {
 
 header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 1rem;
   height: 3rem;
   font-size: 3rem;
   background-color: burlywood;
+}
+
+header a {
+  border: none;
+  background-color: burlywood;
+  font-size: 2rem;
+  align-self: flex-end;
 }
 
 label {
@@ -20,6 +28,14 @@ button {
   background-color: blanchedalmond;
   font-family: 'Reenie Beanie', Arial, Helvetica, sans-serif;
   border-style: 1px solid black;
+}
+
+a {
+  padding: 0 .25rem;
+  border: 1px solid gray;
+  background-color: antiquewhite;
+  text-decoration: none;
+  color: black;
 }
 
 .col-half {
@@ -66,6 +82,7 @@ textarea {
   min-height: 3rem;
   margin-top: 1rem;
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 .bio-container p {
@@ -76,6 +93,8 @@ textarea {
 .icon {
   margin: 1rem;
 }
+
+
 
 @media only screen and (max-width: 600px) {
  .row {
