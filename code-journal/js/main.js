@@ -163,6 +163,7 @@ document.addEventListener('click', function (event) {
   }
   if (data.profile.username === '') {
     viewSwapping('edit-profile');
+  } else {
+    viewSwapping($dataview);
   }
-  viewSwapping($dataview);
 });
