@@ -105,6 +105,16 @@ textarea {
   align-self: center;
 }
 
+.entries {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.entries a {
+  align-self: center;
+}
+
 
 
 @media only screen and (max-width: 600px) {
