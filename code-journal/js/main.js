@@ -26,16 +26,6 @@ $profile.addEventListener('submit', function (event) {
 
 });
 
-window.addEventListener('beforeunload', function (event) {
-  var profileData = JSON.stringify(data);
-  localStorage.setItem('javascript-local-storage', profileData);
-});
-
-var savedProfile = localStorage.getItem('javascript-local-storage');
-if (savedProfile !== null) {
-  data = JSON.parse(savedProfile);
-}
-
 // profile-view DOM creation
 
 function renderProfile(data) {
@@ -214,3 +204,13 @@ $entryForm.addEventListener('submit', function (event) {
   $photoPreview.setAttribute('src', 'images/placeholder-image-square.jpg');
 
 });
+
+window.addEventListener('beforeunload', function (event) {
+  var profileData = JSON.stringify(data);
+  localStorage.setItem('javascript-local-storage', profileData);
+});
+
+var savedProfile = localStorage.getItem('javascript-local-storage');
+if (savedProfile !== null) {
+  data = JSON.parse(savedProfile);
+}

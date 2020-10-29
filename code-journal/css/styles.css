@@ -131,17 +131,18 @@ img {
     font-size: 1rem;
   }
 
+  img {
+    align-self: center;
+  }
+
  .row {
     display: flex;
     flex-direction: column;
   }
 
-  img {
-    align-self: center;
-  }
-
  .col-half {
     width: 100%;
+    padding: .5rem;
   }
 
   .profile .col-half {
