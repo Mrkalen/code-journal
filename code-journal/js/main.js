@@ -114,11 +114,12 @@ var $entriesView = document.querySelector('.entries');
 var $entryView = document.querySelector('.create-entry');
 
 function viewSwapping(dataView) {
+  debugger;
   if (dataView === 'profile') {
+    $profileView.setAttribute('class', 'profile');
     $editView.setAttribute('class', 'edit-profile hidden');
     $entriesView.setAttribute('class', 'entries hidden');
     $entryView.setAttribute('class', 'create-entry hidden');
-    $profileView.setAttribute('class', 'profile');
 
     if (dataView === 'profile') {
       while ($profileView.firstChild) {
@@ -128,10 +129,11 @@ function viewSwapping(dataView) {
     }
 
   } else if (dataView === 'edit-profile') {
+    $editView.setAttribute('class', 'edit-profile');
     $profileView.setAttribute('class', 'profile hidden');
     $entriesView.setAttribute('class', 'entries hidden');
     $entryView.setAttribute('class', 'create-entry hidden');
-    $editView.setAttribute('class', 'edit-profile');
+
     $profile.elements.avatarUrl.value = data.profile.avatarUrl;
     $profile.elements.username.value = data.profile.username;
     $profile.elements.fullName.value = data.profile.fullName;
@@ -139,15 +141,15 @@ function viewSwapping(dataView) {
     $profile.elements.bio.value = data.profile.bio;
     $avatar.setAttribute('src', data.profile.avatarUrl);
   } else if (dataView === 'entries') {
+    $entriesView.setAttribute('class', 'entries');
     $profileView.setAttribute('class', 'profile hidden');
     $editView.setAttribute('class', 'edit-profile hidden');
     $entryView.setAttribute('class', 'create-entry hidden');
-    $entriesView.setAttribute('class', 'entries');
   } else if (dataView === 'create-entry') {
+    $entryView.setAttribute('class', 'create-entry');
     $profileView.setAttribute('class', 'profile hidden');
     $editView.setAttribute('class', 'edit-profile hidden');
     $entriesView.setAttribute('class', 'entries hidden');
-    $entryView.setAttribute('class', 'create-entry');
   }
 
 }
@@ -166,13 +168,15 @@ document.addEventListener('DOMContentLoaded', function (event) {
 // listen for link
 
 document.addEventListener('click', function (event) {
-  data.view = event.target.getAttribute('data-view');
+
   if (event.target.tagName !== 'A') {
     return;
   }
   if (data.profile.username === '') {
     viewSwapping('edit-profile');
+    data.view = 'edit-profile';
   } else {
+    data.view = event.target.getAttribute('data-view');
     viewSwapping(data.view);
   }
 });
