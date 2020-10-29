@@ -146,7 +146,7 @@ function viewSwapping(dataView) {
 // listen for DOMContentLoaded
 
 document.addEventListener('DOMContentLoaded', function (event) {
-  if (data.profile.username === undefined) {
+  if (data.profile.username === '') {
     viewSwapping('edit-profile');
   } else {
     viewSwapping('profile');
@@ -162,11 +162,7 @@ document.addEventListener('click', function (event) {
     return;
   }
   if (data.profile.username === '') {
-    return;
-  }
-  if ($dataview !== 'edit-profile') {
-    return;
+    viewSwapping('edit-profile');
   }
   viewSwapping($dataview);
-  console.log($dataview);
 });
