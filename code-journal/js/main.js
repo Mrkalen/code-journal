@@ -2,7 +2,7 @@
 
 var $userInput = document.querySelector('#avatar');
 
-var $avatar = document.querySelector('img');
+var $avatar = document.querySelector('.avatar-container');
 
 $userInput.addEventListener('input', function (event) {
   var url = event.target.value;
@@ -188,3 +188,11 @@ document.addEventListener('click', function (event) {
 });
 
 // entries
+var $newEntryPhoto = document.querySelector('#photoUrl');
+
+var $photoPreview = document.querySelector('.entry-photo');
+
+$newEntryPhoto.addEventListener('input', function (event) {
+  var url = event.target.value;
+  $photoPreview.setAttribute('src', url);
+});

@@ -50,19 +50,19 @@ textarea {
   height: 5rem;
 }
 
-.col-half {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 50%;
-}
-
-.avatar-container {
+img {
   align-self: center;
   width: 15rem;
   height: 15rem;
   padding-top: 1rem;
   padding-right: 1rem;
+}
+
+.col-half {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
 }
 
 .hidden {
@@ -136,7 +136,7 @@ textarea {
     flex-direction: column;
   }
 
-  .avatar-container {
+  img {
     align-self: center;
   }
 
