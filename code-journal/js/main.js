@@ -157,12 +157,16 @@ document.addEventListener('DOMContentLoaded', function (event) {
 // listen for link
 
 document.addEventListener('click', function (event) {
+  var $dataview = event.target.getAttribute('data-view');
   if (event.target.tagName !== 'A') {
     return;
   }
   if (data.profile.username === '') {
     return;
   }
-  var $dataview = event.target.getAttribute('data-view');
+  if ($dataview !== 'edit-profile') {
+    return;
+  }
   viewSwapping($dataview);
+  console.log($dataview);
 });
