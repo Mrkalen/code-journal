@@ -2,7 +2,7 @@
 
 var $userInput = document.querySelector('#avatar');
 
-var $avatar = document.querySelector('img');
+var $avatar = document.querySelector('.avatar-container');
 
 $userInput.addEventListener('input', function (event) {
   var url = event.target.value;
@@ -25,16 +25,6 @@ $profile.addEventListener('submit', function (event) {
   $avatar.setAttribute('src', 'images/placeholder-image-square.jpg');
 
 });
-
-window.addEventListener('beforeunload', function (event) {
-  var profileData = JSON.stringify(data);
-  localStorage.setItem('javascript-local-storage', profileData);
-});
-
-var savedProfile = localStorage.getItem('javascript-local-storage');
-if (savedProfile !== null) {
-  data = JSON.parse(savedProfile);
-}
 
 // profile-view DOM creation
 
@@ -119,28 +109,49 @@ var $editView = document.querySelector('.edit-profile');
 
 var $profileView = document.querySelector('.profile');
 
+var $entriesView = document.querySelector('.entries');
+
+var $entryView = document.querySelector('.create-entry');
+
 function viewSwapping(dataView) {
-  if (dataView !== 'edit-profile') {
-    $editView.setAttribute('class', 'edit-profile hidden');
+  debugger;
+  if (dataView === 'profile') {
     $profileView.setAttribute('class', 'profile');
-  } else {
-    $profileView.setAttribute('class', 'profile hidden');
+    $editView.setAttribute('class', 'edit-profile hidden');
+    $entriesView.setAttribute('class', 'entries hidden');
+    $entryView.setAttribute('class', 'create-entry hidden');
+
+    if (dataView === 'profile') {
+      while ($profileView.firstChild) {
+        $profileView.removeChild($profileView.firstChild);
+      }
+      $profileView.appendChild(renderProfile(data));
+    }
+
+  } else if (dataView === 'edit-profile') {
     $editView.setAttribute('class', 'edit-profile');
+    $profileView.setAttribute('class', 'profile hidden');
+    $entriesView.setAttribute('class', 'entries hidden');
+    $entryView.setAttribute('class', 'create-entry hidden');
+
     $profile.elements.avatarUrl.value = data.profile.avatarUrl;
     $profile.elements.username.value = data.profile.username;
     $profile.elements.fullName.value = data.profile.fullName;
     $profile.elements.location.value = data.profile.location;
     $profile.elements.bio.value = data.profile.bio;
     $avatar.setAttribute('src', data.profile.avatarUrl);
+  } else if (dataView === 'entries') {
+    $entriesView.setAttribute('class', 'entries');
+    $profileView.setAttribute('class', 'profile hidden');
+    $editView.setAttribute('class', 'edit-profile hidden');
+    $entryView.setAttribute('class', 'create-entry hidden');
+  } else if (dataView === 'create-entry') {
+    $entryView.setAttribute('class', 'create-entry');
+    $profileView.setAttribute('class', 'profile hidden');
+    $editView.setAttribute('class', 'edit-profile hidden');
+    $entriesView.setAttribute('class', 'entries hidden');
   }
-  data.view = dataView;
 
-  if (dataView === 'profile') {
-    while ($profileView.firstChild) {
-      $profileView.removeChild($profileView.firstChild);
-    }
-    $profileView.appendChild(renderProfile(data));
-  }
 }
 
 // listen for DOMContentLoaded
@@ -149,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   if (data.profile.username === '') {
     viewSwapping('edit-profile');
   } else {
-    viewSwapping('profile');
+    viewSwapping(data.view);
   }
 
 });
@@ -157,13 +168,53 @@ document.addEventListener('DOMContentLoaded', function (event) {
 // listen for link
 
 document.addEventListener('click', function (event) {
-  var $dataview = event.target.getAttribute('data-view');
+
   if (event.target.tagName !== 'A') {
     return;
   }
   if (data.profile.username === '') {
     viewSwapping('edit-profile');
+    data.view = 'edit-profile';
   } else {
-    viewSwapping($dataview);
+    data.view = event.target.getAttribute('data-view');
+    viewSwapping(data.view);
   }
 });
+
+// entries
+
+var $newEntryPhoto = document.querySelector('#photoUrl');
+
+var $photoPreview = document.querySelector('.entry-photo');
+
+$newEntryPhoto.addEventListener('input', function (event) {
+  var url = event.target.value;
+  $photoPreview.setAttribute('src', url);
+});
+
+var $entryForm = document.querySelector('#entry-form');
+
+$entryForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  var entry = {};
+  entry.photoUrl = $entryForm.elements.photoUrl.value;
+  entry.title = $entryForm.elements.title.value;
+  entry.notes = $entryForm.elements.notes.value;
+  data.entries.unshift(entry);
+  data.view = 'entries';
+  viewSwapping(data.view);
+
+  $entryForm.reset();
+  $photoPreview.setAttribute('src', 'images/placeholder-image-square.jpg');
+
+});
+
+window.addEventListener('beforeunload', function (event) {
+  var profileData = JSON.stringify(data);
+  localStorage.setItem('javascript-local-storage', profileData);
+});
+
+var savedProfile = localStorage.getItem('javascript-local-storage');
+if (savedProfile !== null) {
+  data = JSON.parse(savedProfile);
+}
