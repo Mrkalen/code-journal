@@ -109,7 +109,7 @@ var $editView = document.querySelector('.edit-profile');
 
 var $profileView = document.querySelector('.profile');
 
-var $entriesView = document.querySelector('.entries');
+var $entriesView = document.querySelector('.entries-container');
 
 var $entryView = document.querySelector('.create-entry');
 
@@ -117,7 +117,7 @@ function viewSwapping(dataView) {
   if (dataView === 'profile') {
     $profileView.setAttribute('class', 'profile');
     $editView.setAttribute('class', 'edit-profile hidden');
-    $entriesView.setAttribute('class', 'entries hidden');
+    $entriesView.setAttribute('class', 'entries-container hidden');
     $entryView.setAttribute('class', 'create-entry hidden');
 
     if (dataView === 'profile') {
@@ -130,7 +130,7 @@ function viewSwapping(dataView) {
   } else if (dataView === 'edit-profile') {
     $editView.setAttribute('class', 'edit-profile');
     $profileView.setAttribute('class', 'profile hidden');
-    $entriesView.setAttribute('class', 'entries hidden');
+    $entriesView.setAttribute('class', 'entries-container hidden');
     $entryView.setAttribute('class', 'create-entry hidden');
 
     $profile.elements.avatarUrl.value = data.profile.avatarUrl;
@@ -140,7 +140,7 @@ function viewSwapping(dataView) {
     $profile.elements.bio.value = data.profile.bio;
     $avatar.setAttribute('src', data.profile.avatarUrl);
   } else if (dataView === 'entries') {
-    $entriesView.setAttribute('class', 'entries');
+    $entriesView.setAttribute('class', 'entries-container');
     $profileView.setAttribute('class', 'profile hidden');
     $editView.setAttribute('class', 'edit-profile hidden');
     $entryView.setAttribute('class', 'create-entry hidden');
@@ -148,7 +148,7 @@ function viewSwapping(dataView) {
     $entryView.setAttribute('class', 'create-entry');
     $profileView.setAttribute('class', 'profile hidden');
     $editView.setAttribute('class', 'edit-profile hidden');
-    $entriesView.setAttribute('class', 'entries hidden');
+    $entriesView.setAttribute('class', 'entries-container hidden');
   }
 
 }
