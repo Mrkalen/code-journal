@@ -114,7 +114,6 @@ var $entriesView = document.querySelector('.entries');
 var $entryView = document.querySelector('.create-entry');
 
 function viewSwapping(dataView) {
-  debugger;
   if (dataView === 'profile') {
     $profileView.setAttribute('class', 'profile');
     $editView.setAttribute('class', 'edit-profile hidden');
@@ -201,8 +200,11 @@ $entryForm.addEventListener('submit', function (event) {
   entry.title = $entryForm.elements.title.value;
   entry.notes = $entryForm.elements.notes.value;
   data.entries.unshift(entry);
+
   data.view = 'entries';
   viewSwapping(data.view);
+
+  $entryList.prepend(renderEntries(entry));
 
   $entryForm.reset();
   $photoPreview.setAttribute('src', 'images/placeholder-image-square.jpg');
@@ -218,3 +220,44 @@ var savedProfile = localStorage.getItem('javascript-local-storage');
 if (savedProfile !== null) {
   data = JSON.parse(savedProfile);
 }
+
+// render entries
+var $entryList = document.querySelector('.entries');
+
+function renderEntries(dataEntry) {
+
+  var entryDiv = document.createElement('div');
+  entryDiv.setAttribute('class', 'entry-body');
+
+  var entryOl = document.createElement('ol');
+  entryOl.setAttribute('class', 'entry-list');
+  entryDiv.appendChild(entryOl);
+
+  var entryLi = document.createElement('li');
+  entryLi.setAttribute('class', 'entry');
+  entryOl.appendChild(entryLi);
+
+  var entryImg = document.createElement('img');
+  entryImg.setAttribute('src', dataEntry.photoUrl);
+  entryLi.appendChild(entryImg);
+
+  var entryNoteDiv = document.createElement('div');
+  entryLi.appendChild(entryNoteDiv);
+
+  var entryTitleH2 = document.createElement('h2');
+  entryTitleH2.textContent = dataEntry.title;
+  entryNoteDiv.appendChild(entryTitleH2);
+
+  var entryNotesP = document.createElement('p');
+  entryNotesP.setAttribute('class', 'notes');
+  entryNotesP.textContent = dataEntry.notes;
+  entryNoteDiv.appendChild(entryNotesP);
+
+  return entryDiv;
+}
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    $entryList.appendChild(renderEntries(data.entries[i]));
+  }
+});

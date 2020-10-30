@@ -63,10 +63,12 @@
     </div>
     <div class="profile hidden" data-view="profile">
     </div>
-    <div class="entries" data-view="entries">
-      <div class="entries">
+    <div class="entries-container" data-view="entries">
+      <div class="entries-header">
         <h1>Journal Entries</h1>
         <a href="" data-view="create-entry">New Entry</a>
+      </div>
+      <div class="entries">
       </div>
     </div>
     <div class="create-entry" data-view="create-entry">
@@ -77,10 +79,10 @@
             <img class="entry-photo" src="images/placeholder-image-square.jpg">
           </div>
           <div class="col-half">
-          <label for="photoUrl">Image URL</label>
-          <input required id="photoUrl" type="text" class="entry-input" name="imageUrl" placeholder="Enter URL">
-          <label for="entry-title">Title</label>
-          <input required id="entry-title" type="text" class="entery-input" name="title">
+            <label for="photoUrl">Image URL</label>
+            <input required id="photoUrl" type="text" class="entry-input" name="imageUrl" placeholder="Enter URL">
+            <label for="entry-title">Title</label>
+            <input required id="entry-title" type="text" class="entery-input" name="title">
           </div>
         </div>
         <div class="row">
