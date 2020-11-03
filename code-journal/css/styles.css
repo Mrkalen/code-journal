@@ -12,6 +12,14 @@ header {
   background-color: burlywood;
 }
 
+a {
+  padding: 0 .25rem;
+  border: 1px solid gray;
+  background-color: antiquewhite;
+  text-decoration: none;
+  color: black;
+}
+
 header a {
   border: none;
   background-color: burlywood;
@@ -30,19 +38,18 @@ button {
   border-style: 1px solid black;
 }
 
-a {
-  padding: 0 .25rem;
-  border: 1px solid gray;
-  background-color: antiquewhite;
-  text-decoration: none;
-  color: black;
-}
-
 ul {
   margin: 0;
   list-style: none;
   display: flex;
   align-items: center;
+}
+
+ol li {
+  border: 2px solid blanchedalmond;
+  padding: 1rem;
+  list-style: none;
+  display: flex;
 }
 
 textarea {
@@ -51,12 +58,21 @@ textarea {
 }
 
 img {
+  object-fit: cover;
   align-self: center;
   width: 15rem;
   height: 15rem;
-  padding-top: 1rem;
-  padding-right: 1rem;
 }
+
+li div {
+  padding: 1rem;
+}
+
+p,
+h2 {
+  margin: 0;
+}
+
 
 .col-half {
   display: flex;
@@ -105,13 +121,13 @@ img {
   align-self: center;
 }
 
-.entries {
+.entries-header {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.entries a {
+.entries-container a {
   align-self: center;
 }
 
@@ -133,6 +149,14 @@ img {
 
   img {
     align-self: center;
+  }
+
+  ol {
+    padding: 0;
+  }
+
+  li {
+    flex-direction: column;
   }
 
  .row {
